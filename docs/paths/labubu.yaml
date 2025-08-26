@@ -3,6 +3,8 @@ labubu:
     summary: Create labubu
     description: Insert a new labubu entry
     operationId: createLabubu
+    security:
+      - bearerAuth: []
     requestBody:
       required: true
       content:
@@ -23,12 +25,14 @@ labubu:
     summary: Get all labubu
     description: Retrieve all labubu entries
     operationId: getLabubu
+    security:
+      - bearerAuth: []
     responses:
       '200':
         description: List of labubu entries
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '../components/schemas.yaml#/components/schemas/Labubu'
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../components/schemas.yaml#/components/schemas/Labubu'

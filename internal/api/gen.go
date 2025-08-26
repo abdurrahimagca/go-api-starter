@@ -17,6 +17,10 @@ import (
 	strictnethttp "github.com/oapi-codegen/runtime/strictmiddleware/nethttp"
 )
 
+const (
+	BearerAuthScopes = "bearerAuth.Scopes"
+)
+
 // CreateLabubuJSONBody defines parameters for CreateLabubu.
 type CreateLabubuJSONBody struct {
 	Text string `json:"text"`
@@ -345,6 +349,10 @@ type ClientWithResponsesInterface interface {
 type GetLabubuResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]struct {
+		Id   int    `json:"id"`
+		Text string `json:"text"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -469,6 +477,19 @@ func ParseGetLabubuResponse(rsp *http.Response) (*GetLabubuResponse, error) {
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []struct {
+			Id   int    `json:"id"`
+			Text string `json:"text"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -577,6 +598,12 @@ type MiddlewareFunc func(http.Handler) http.Handler
 // GetLabubu operation middleware
 func (siw *ServerInterfaceWrapper) GetLabubu(w http.ResponseWriter, r *http.Request) {
 
+	ctx := r.Context()
+
+	ctx = context.WithValue(ctx, BearerAuthScopes, []string{})
+
+	r = r.WithContext(ctx)
+
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.GetLabubu(w, r)
 	}))
@@ -590,6 +617,12 @@ func (siw *ServerInterfaceWrapper) GetLabubu(w http.ResponseWriter, r *http.Requ
 
 // CreateLabubu operation middleware
 func (siw *ServerInterfaceWrapper) CreateLabubu(w http.ResponseWriter, r *http.Request) {
+
+	ctx := r.Context()
+
+	ctx = context.WithValue(ctx, BearerAuthScopes, []string{})
+
+	r = r.WithContext(ctx)
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.CreateLabubu(w, r)
@@ -749,21 +782,16 @@ type GetLabubuResponseObject interface {
 	VisitGetLabubuResponse(w http.ResponseWriter) error
 }
 
-type GetLabubu200Response struct {
+type GetLabubu200JSONResponse []struct {
+	Id   int    `json:"id"`
+	Text string `json:"text"`
 }
 
-func (response GetLabubu200Response) VisitGetLabubuResponse(w http.ResponseWriter) error {
+func (response GetLabubu200JSONResponse) VisitGetLabubuResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	return nil
-}
 
-type GetLabubucontentResponse struct {
-	StatusCode int
-}
-
-func (response GetLabubucontentResponse) VisitGetLabubuResponse(w http.ResponseWriter) error {
-	w.WriteHeader(response.StatusCode)
-	return nil
+	return json.NewEncoder(w).Encode(response)
 }
 
 type CreateLabubuRequestObject struct {

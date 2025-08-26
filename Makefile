@@ -81,7 +81,7 @@ generate-api: openapi ## Generate OpenAPI server code
 
 generate-db: ## Generate SQLC database code
 	@echo "Generating SQLC..."
-	sqlc generate
+	go run github.com/sqlc-dev/sqlc/cmd/sqlc generate
 
 # Database
 db-up: ## Start database
