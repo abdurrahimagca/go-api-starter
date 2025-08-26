@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # PostgreSQL service is optional - comment out if using external DB (Neon, Supabase, etc.)
+  postgres:
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_prod_data:/var/lib/postgresql/data
+    # No exposed ports for production (internal only)
+    restart: unless-stopped
+
+  # Redis is optional - comment out if using external Redis
+  redis:
+    volumes:
+      - redis_prod_data:/data
+    restart: unless-stopped
+
+  api:
+    ports:
+      - "${API_PORT:-80}:8080"
+    restart: unless-stopped
+    # Production optimizations
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+volumes:
+  postgres_prod_data:
+  redis_prod_data:

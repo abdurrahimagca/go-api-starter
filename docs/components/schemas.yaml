@@ -1,0 +1,36 @@
+components:
+  schemas:
+      LoginResponse:
+        type: object
+        required:
+          - access_token
+          - refresh_token
+        properties:
+          access_token:
+            type: string
+            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          refresh_token:
+            type: string
+            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+      CreateLabubuRequest:
+        type: object
+        required:
+          - text
+        properties:
+          text:
+            type: string
+            example: "Hello from labubu"
+
+      Labubu:
+        type: object
+        required:
+          - id
+          - text
+        properties:
+          id:
+            type: integer
+            example: 1
+          text:
+            type: string
+            example: "Hello from labubu"
