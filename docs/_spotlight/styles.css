@@ -1,0 +1,411 @@
+/* Black & Gray Theme for API Documentation */
+
+/* Root variables for consistent theming */
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --bg-accent: #333333;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #808080;
+  --border-color: #404040;
+  --highlight: #8a2be2;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --code-bg: #1e1e1e;
+  --sidebar-bg: #0f0f0f;
+}
+
+/* Main body styling */
+body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Stoplight Elements container */
+.sl-elements {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* API container */
+.sl-elements-api {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Sidebar styling */
+.sl-bg-canvas-100 {
+  background-color: var(--sidebar-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.sl-bg-canvas-200 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.sl-bg-canvas-50 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.sl-bg-canvas {
+  background-color: var(--bg-primary) !important;
+}
+
+.sl-bg-canvas-pure {
+  background-color: var(--bg-primary) !important;
+}
+
+.sl-bg-canvas-tint {
+  background-color: var(--bg-accent) !important;
+}
+
+/* Text colors */
+.sl-text-heading,
+.sl-text-body {
+  color: var(--text-primary) !important;
+}
+
+.sl-text-muted {
+  color: var(--text-muted) !important;
+}
+
+.sl-text-light {
+  color: var(--text-secondary) !important;
+}
+
+/* Sidebar navigation */
+.ElementsTableOfContentsItem {
+  color: var(--text-secondary) !important;
+}
+
+.ElementsTableOfContentsItem:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+.sl-bg-primary-tint {
+  background-color: var(--highlight) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Method badges */
+.sl-text-primary {
+  color: var(--text-primary) !important;
+}
+
+.sl-bg-primary {
+  background-color: var(--highlight) !important;
+}
+
+.sl-text-on-primary {
+  color: var(--text-primary) !important;
+}
+
+.sl-text-success {
+  color: var(--success) !important;
+}
+
+.sl-text-warning {
+  color: var(--warning) !important;
+}
+
+/* Panels and borders */
+.sl-panel {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.sl-border,
+.sl-border-r,
+.sl-border-t,
+.sl-border-b {
+  border-color: var(--border-color) !important;
+}
+
+.sl-border-input {
+  border-color: var(--border-color) !important;
+}
+
+/* Code blocks */
+.sl-code-viewer,
+.sl-code-editor,
+.sl-code-highlight {
+  background-color: var(--code-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Syntax highlighting for code */
+.token.property {
+  color: #80cbf4 !important;
+}
+
+.token.string {
+  color: #a5d6ff !important;
+}
+
+.token.operator {
+  color: #ff7b72 !important;
+}
+
+.token.number {
+  color: #79c0ff !important;
+}
+
+.token.punctuation {
+  color: var(--text-secondary) !important;
+}
+
+.token.function {
+  color: #d2a8ff !important;
+}
+
+/* Input fields */
+.sl-form-group-border,
+input[type="text"],
+textarea {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.sl-form-group-border:hover {
+  border-color: var(--highlight) !important;
+}
+
+.sl-form-group-border:focus {
+  border-color: var(--highlight) !important;
+}
+
+/* Buttons */
+.sl-button {
+  background-color: var(--bg-accent) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.sl-button:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.sl-bg-primary:not(.sl-button) {
+  background-color: var(--highlight) !important;
+}
+
+/* Send button */
+.sl-bg-primary.sl-button {
+  background-color: var(--highlight) !important;
+}
+
+.sl-bg-primary-dark {
+  background-color: #3a7bc8 !important;
+}
+
+.sl-bg-primary-darker {
+  background-color: #2968b3 !important;
+}
+
+/* Try It panel */
+.TryItPanel {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Response tabs */
+.sl-bg-success {
+  background-color: var(--success) !important;
+}
+
+.sl-text-warning {
+  color: var(--warning) !important;
+}
+
+/* Schema viewer */
+.JsonSchemaViewer {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Schema rows and array structures */
+[data-test="schema-row"] {
+  background-color: var(--bg-primary) !important;
+}
+
+[data-test="schema-row"]:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Array indicator text */
+.sl-text-base.sl-font-mono.sl-font-semibold.sl-pb-4 {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  padding: 1rem !important;
+  border-radius: 0.375rem !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Property names */
+[data-test^="property-name"] {
+  color: var(--text-primary) !important;
+}
+
+/* Property types */
+[data-test="property-type"] {
+  color: var(--text-secondary) !important;
+}
+
+/* Schema container backgrounds */
+.sl-border-l {
+  background-color: var(--bg-secondary) !important;
+  border-left-color: var(--highlight) !important;
+  border-left-width: 2px !important;
+  padding: 1.5rem !important;
+  border-radius: 0.5rem !important;
+  margin: 0.5rem 0 !important;
+  border: 1px solid var(--border-color) !important;
+  border-left: 2px solid var(--highlight) !important;
+}
+
+/* Schema row container body background */
+[data-test="schema-row"] .sl-stack {
+  background-color: var(--bg-secondary) !important;
+  padding: 0.75rem !important;
+  border-radius: 0.375rem !important;
+}
+
+/* Target specific schema row elements that might have black backgrounds */
+[data-test="schema-row"] {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-test="schema-row"] > div {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Fix the border connector lines */
+.sl-w-3.sl-mt-2.sl-mr-3.sl--ml-3.sl-border-t {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Remove any remaining black backgrounds in schema sections */
+[data-test="schema-row"] *,
+[data-test="schema-row"] div {
+  background-color: inherit !important;
+}
+
+/* Force consistent backgrounds on all nested elements */
+.sl-border-l * {
+  background-color: transparent !important;
+}
+
+.sl-border-l {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Ensure panels have consistent backgrounds */
+.sl-panel,
+.sl-panel__content-wrapper {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 0.5rem !important;
+}
+
+/* Property validation examples */
+[data-test="property-validation"] {
+  background-color: var(--bg-tertiary) !important;
+  padding: 0.5rem !important;
+  border-radius: 0.25rem !important;
+  margin-top: 0.5rem !important;
+}
+
+[data-test="property-validation"] span:first-child {
+  color: var(--text-secondary) !important;
+}
+
+/* Example values */
+[data-test="property-validation"] .sl-bg-canvas-tint {
+  background-color: var(--code-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Line numbers in code */
+.sl-code-highlight__ln {
+  color: var(--text-muted) !important;
+}
+
+/* Status indicators */
+.sl-text-on-primary {
+  color: var(--text-primary) !important;
+}
+
+/* Markdown content */
+.sl-prose.sl-markdown-viewer p {
+  color: var(--text-secondary) !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-accent);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--highlight);
+  color: var(--text-primary);
+}
+
+/* Focus states */
+*:focus {
+  outline-color: var(--highlight) !important;
+}
+
+/* Hover states for interactive elements */
+.sl-cursor-pointer:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Panel content wrapper */
+.sl-panel__content-wrapper {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Sticky elements */
+.sl-sticky {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Override any remaining light backgrounds */
+[class*="sl-bg-"]:not([class*="sl-bg-primary"]):not([class*="sl-bg-success"]):not([class*="sl-bg-warning"]) {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Ensure text remains readable */
+* {
+  color: var(--text-primary);
+}
+
+/* Special handling for icons */
+.svg-inline--fa {
+  color: inherit !important;
+}
+
+/* Powered by Stoplight link */
+a[href*="stoplight.io"] {
+  color: var(--text-muted) !important;
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
