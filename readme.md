@@ -1,2 +1,1 @@
-# This repo should be a template for my own GO API projects. 
-## It is not fair to say this is wonderful but it is going to be better planning to have some other templates. All for my own feel free to use if you want
+This repo should be a template for my own GO API projects.
