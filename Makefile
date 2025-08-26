@@ -1,4 +1,4 @@
-.PHONY: help dev build clean test lint openapi generate generate-api generate-db db-up db-down migrate-up migrate-down
+.PHONY: help dev dev-d dev-down build clean test lint openapi generate generate-api generate-db db-up db-down migrate-up migrate-down
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -6,8 +6,11 @@ help: ## Show this help message
 	@echo 'Targets:'
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-# Development
 dev: ## Start development environment
+	docker compose -f compose.base.yml -f compose.dev.overrides.yml up
+
+# Development
+dev-d: ## Start development environment
 	docker compose -f compose.base.yml -f compose.dev.overrides.yml up -d
 
 dev-down: ## Stop development environment
@@ -62,7 +65,7 @@ env: ## Create environment files and update .gitignore
 
 # Build
 build: ## Build the application
-	go build -o bin/api ./cmd/api
+	go build -o bin/api ./cmd/serve.go
 
 clean: ## Clean build artifacts
 	rm -rf bin/ internal/api/gen.go

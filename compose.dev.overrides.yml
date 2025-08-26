@@ -15,6 +15,19 @@ services:
     volumes:
       - redis_dev_data:/data
 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@admin.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -25,7 +38,9 @@ services:
       - ./.env:/app/.env
     environment:
       - CGO_ENABLED=0
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
 
 volumes:
   postgres_dev_data:
   redis_dev_data:
+  pgadmin_data:
